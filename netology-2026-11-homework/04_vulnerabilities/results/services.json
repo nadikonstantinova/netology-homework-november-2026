@@ -1,0 +1,178 @@
+[
+  {
+    "port": 21,
+    "protocol": "tcp",
+    "service": "ftp",
+    "product": "vsftpd",
+    "version": "2.3.4",
+    "extra": ""
+  },
+  {
+    "port": 22,
+    "protocol": "tcp",
+    "service": "ssh",
+    "product": "OpenSSH",
+    "version": "4.7p1 Debian 8ubuntu1",
+    "extra": "protocol 2.0"
+  },
+  {
+    "port": 23,
+    "protocol": "tcp",
+    "service": "telnet",
+    "product": "Linux telnetd",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 25,
+    "protocol": "tcp",
+    "service": "smtp",
+    "product": "Postfix smtpd",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 53,
+    "protocol": "tcp",
+    "service": "domain",
+    "product": "ISC BIND",
+    "version": "9.4.2",
+    "extra": ""
+  },
+  {
+    "port": 80,
+    "protocol": "tcp",
+    "service": "http",
+    "product": "Apache httpd",
+    "version": "2.2.8",
+    "extra": "(Ubuntu) DAV/2"
+  },
+  {
+    "port": 111,
+    "protocol": "tcp",
+    "service": "rpcbind",
+    "product": "",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 139,
+    "protocol": "tcp",
+    "service": "netbios-ssn",
+    "product": "Samba smbd",
+    "version": "3.X - 4.X",
+    "extra": "workgroup: WORKGROUP"
+  },
+  {
+    "port": 445,
+    "protocol": "tcp",
+    "service": "netbios-ssn",
+    "product": "Samba smbd",
+    "version": "3.X - 4.X",
+    "extra": "workgroup: WORKGROUP"
+  },
+  {
+    "port": 512,
+    "protocol": "tcp",
+    "service": "exec",
+    "product": "netkit-rsh rexecd",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 513,
+    "protocol": "tcp",
+    "service": "login",
+    "product": "",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 514,
+    "protocol": "tcp",
+    "service": "shell",
+    "product": "Netkit rshd",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 1099,
+    "protocol": "tcp",
+    "service": "java-rmi",
+    "product": "GNU Classpath grmiregistry",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 1524,
+    "protocol": "tcp",
+    "service": "bindshell",
+    "product": "Metasploitable root shell",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 2049,
+    "protocol": "tcp",
+    "service": "rpcbind",
+    "product": "",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 2121,
+    "protocol": "tcp",
+    "service": "ftp",
+    "product": "ProFTPD",
+    "version": "1.3.1",
+    "extra": ""
+  },
+  {
+    "port": 3306,
+    "protocol": "tcp",
+    "service": "mysql",
+    "product": "MySQL",
+    "version": "5.0.51a-3ubuntu5",
+    "extra": ""
+  },
+  {
+    "port": 5432,
+    "protocol": "tcp",
+    "service": "postgresql",
+    "product": "PostgreSQL DB",
+    "version": "8.3.0 - 8.3.7",
+    "extra": ""
+  },
+  {
+    "port": 5900,
+    "protocol": "tcp",
+    "service": "vnc",
+    "product": "VNC",
+    "version": "",
+    "extra": "protocol 3.3"
+  },
+  {
+    "port": 6000,
+    "protocol": "tcp",
+    "service": "X11",
+    "product": "",
+    "version": "",
+    "extra": "access denied"
+  },
+  {
+    "port": 6667,
+    "protocol": "tcp",
+    "service": "irc",
+    "product": "UnrealIRCd",
+    "version": "",
+    "extra": ""
+  },
+  {
+    "port": 8180,
+    "protocol": "tcp",
+    "service": "",
+    "product": "",
+    "version": "",
+    "extra": ""
+  }
+]

@@ -1,0 +1,55 @@
+Как вручную разместить и сдать четыре задания
+
+1. Распакуйте netology-november-2026.zip. Внутри находится папка
+   netology-2026-11-homework с четырьмя решениями.
+
+2. Войдите в нужный GitHub-аккаунт Надежды. Проверьте логин в меню аватара.
+   Загрузка в аккаунт Юрия для этих заданий не требуется.
+
+3. Если fork учебного шаблона уже существует после предыдущих заданий,
+   откройте его. Старые папки ELK/RabbitMQ удалять или заменять не нужно.
+   Если fork ещё не создан, откройте:
+   https://github.com/netology-code/sys-pattern-homework
+   Нажмите Fork, выберите нужный Owner и нажмите Create fork.
+
+4. В корне своего fork выберите Add file -> Upload files.
+   Перетащите папку netology-2026-11-homework целиком из распакованного архива.
+   Не перетаскивайте сам ZIP: GitHub не распакует его автоматически.
+
+5. Дождитесь загрузки всех файлов и нажмите Commit changes.
+   Сообщение коммита: Add four Netology homework solutions.
+   При выборе способа сохранения можно сохранить прямо в main.
+
+6. Проверьте четыре файла README.md:
+   netology-2026-11-homework/01_network_protection/README.md
+   netology-2026-11-homework/02_advanced_sql/README.md
+   netology-2026-11-homework/03_replication_scaling/README.md
+   netology-2026-11-homework/04_vulnerabilities/README.md
+   Две схемы масштабирования и ссылки на приложения должны открываться.
+
+7. Для каждого файла скопируйте его полный адрес из строки браузера.
+   Нужна ссылка на страницу README.md, а не на весь репозиторий или ZIP.
+   Пример формата:
+   https://github.com/ВАШ_ЛОГИН/ВАШ_РЕПОЗИТОРИЙ/blob/main/netology-2026-11-homework/01_network_protection/README.md
+
+8. Сопоставьте ссылки с заданиями в Нетологии:
+
+   Защита сети -> 01_network_protection/README.md
+   https://netology.ru/profile/program/syssec-59/lessons/673143/lesson_items/3605397
+
+   Расширенные возможности SQL -> 02_advanced_sql/README.md
+   https://netology.ru/profile/program/sdbsql-59/lessons/661728/lesson_items/3546843
+
+   Репликация и масштабирование. Часть 2 -> 03_replication_scaling/README.md
+   https://netology.ru/profile/program/sdbsql-59/lessons/661731/lesson_items/3546855
+
+   Уязвимости и атаки на информационные системы -> 04_vulnerabilities/README.md
+   https://netology.ru/profile/program/syssec-59/lessons/673141/lesson_items/3605384
+
+9. В каждом задании Нетологии вставьте соответствующую ссылку, заполните
+   обязательные поля формы и нажмите «Отправить на проверку».
+   Проверьте, что отправка появилась в истории каждого из четырёх заданий.
+
+Срок, указанный в кабинете после открытия: 18 ноября 2026, 23:59.
+В GitHub и Нетологию автоматически ничего не отправлялось.
+Виртуальный диск Metasploitable, архив его загрузки и файл .env в комплект не входят.

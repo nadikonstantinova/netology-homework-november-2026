@@ -1,0 +1,12 @@
+$ nmap -sT -Pn --reason -p 1-100 -oA /evidence/network-protection/01-nmap-connect 10.113.77.20
+
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-11-13 20:22 UTC
+Nmap scan report for anna-netology-nov13-defender-1.anna-netology-nov13_security (10.113.77.20)
+Host is up, received user-set (0.00065s latency).
+Not shown: 99 closed tcp ports (conn-refused)
+PORT   STATE SERVICE REASON
+22/tcp open  ssh     syn-ack
+
+Nmap done: 1 IP address (1 host up) scanned in 0.03 seconds
+
+Exit code: 0

@@ -1,0 +1,106 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Защита сети — Константинова Надежда</title><style>
+body{margin:0;background:#f3f5f8;color:#1c2e3e;font:17px/1.65 system-ui,sans-serif}main{max-width:1160px;margin:30px auto;padding:35px 48px;background:white;border:1px solid #dbe2ea;border-radius:12px}h1{font-size:31px;line-height:1.3}h2{font-size:25px;margin-top:38px;border-bottom:1px solid #dbe2ea;padding-bottom:8px}h3{font-size:21px;margin-top:30px}a{color:#17669c}pre{padding:18px;background:#eef3f7;border-radius:8px;overflow:auto;font:14px/1.6 Consolas,monospace}code{font-family:Consolas,monospace}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:11px;border:1px solid #d9e1e8;text-align:left;vertical-align:top}th{background:#edf4f9}img{max-width:100%;height:auto;border:1px solid #dbe2ea;border-radius:8px}li{margin:5px 0}@media(max-width:700px){main{margin:0;padding:18px}h1{font-size:25px}table{font-size:13px;display:block;overflow:auto}}@media print{main{margin:0;border:0;padding:0}img,pre{break-inside:avoid}h2,h3{break-after:avoid}}</style><main><h1>Защита сети — Константинова Надежда</h1>
+<p>Проверка выполнена в изолированной учебной подсети <code>10.113.77.0/24</code>. Защищаемая система — <code>10.113.77.20</code>, система сканирования — <code>10.113.77.10</code>. Установлены Suricata 7.0.10, Fail2Ban 1.1.0, Nmap 7.95 и Hydra 9.5. На защищаемом узле работает SSH.</p>
+<h2>Задание 1. Разведка системы и анализ событий</h2>
+<p>Выполнены четыре режима проверки. Для воспроизводимости выбран диапазон TCP-портов <code>1–100</code>:</p>
+<pre><code class="language-bash">nmap -sA -Pn --reason -p 1-100 10.113.77.20
+nmap -sT -Pn --reason -p 1-100 10.113.77.20
+nmap -sS -Pn --reason -p 1-100 10.113.77.20
+nmap -sV -Pn --reason -p 1-100 10.113.77.20
+</code></pre>
+<p>Результаты:</p>
+<table>
+<thead>
+<tr>
+<th>Режим</th>
+<th>Наблюдение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-sA</code>, ACK</td>
+<td>Все 100 проверенных портов имеют состояние <code>unfiltered</code>, ответ — TCP RST. Этот режим проверяет фильтрацию, а не определяет открытые порты.</td>
+</tr>
+<tr>
+<td><code>-sT</code>, connect</td>
+<td>Порт <code>22/tcp</code> открыт, остальные 99 портов закрыты. Выполняется TCP-соединение.</td>
+</tr>
+<tr>
+<td><code>-sS</code>, SYN</td>
+<td>Порт <code>22/tcp</code> отвечает SYN/ACK, закрытые порты — RST. Полное прикладное соединение для SYN-проверки не требуется.</td>
+</tr>
+<tr>
+<td><code>-sV</code>, определение версии</td>
+<td>На <code>22/tcp</code> распознан <code>OpenSSH 10.0p2 Debian 7+deb13u4</code>, протокол SSH 2.0.</td>
+</tr>
+</tbody>
+</table>
+<p>Выводы команд: <a href="results/01-nmap-ack.txt">ACK</a>, <a href="results/01-nmap-connect.txt">connect</a>, <a href="results/01-nmap-syn.txt">SYN</a>, <a href="results/01-nmap-version.txt">определение версии</a>.</p>
+<h3>События Suricata</h3>
+<p>Загружены приложенные <a href="config/netology.rules">учебные правила</a>: пороговая фиксация SYN- и ACK-пакетов, а также повторных SSH-пакетов. Примеры реально записанных событий:</p>
+<pre><code class="language-text">11/13/2026-20:22:36.346795 [1:1000002:1] LAB TCP ACK scan threshold
+10.113.77.10:50454 -&gt; 10.113.77.20:34
+
+11/13/2026-20:22:36.765392 [1:1000001:1] LAB TCP SYN scan threshold
+10.113.77.10:38244 -&gt; 10.113.77.20:36
+
+11/13/2026-20:22:38.061992 [1:1000003:1] LAB repeated SSH connection attempts
+10.113.77.10:57886 -&gt; 10.113.77.20:22
+</code></pre>
+<p>Suricata увидела поток проверки множества портов и SSH-трафик при определении версии службы. Эти правила демонстрируют работу IDS, но не являются полноценным набором производственных сигнатур: обычные ACK-пакеты тоже могут достигнуть заданного порога. Срабатывание учебного SSH-правила означает повторные пакеты распознанного SSH-протокола, а не обязательно несколько независимых подключений или подтверждённый подбор пароля.</p>
+<p>Полный журнал этапа: <a href="logs/01-suricata-fast.log">Suricata fast.log</a>.</p>
+<h3>События Fail2Ban</h3>
+<p>После сканирования в jail <code>sshd</code> получено:</p>
+<pre><code class="language-text">Total failed: 0
+Currently banned: 0
+Total banned: 0
+</code></pre>
+<p>Это ожидаемый результат: SYN/ACK-сканирование и чтение баннера SSH сами по себе не создают неудачных попыток парольной аутентификации. Fail2Ban анализирует журнал SSH, поэтому не должен автоматически блокировать адрес только из-за таких пакетов. В его журнале на этом этапе находятся события запуска jail, но нет <code>Found</code> и <code>Ban</code>.</p>
+<p><a href="logs/01-fail2ban.log">Журнал Fail2Ban после разведки</a> · <a href="results/01-fail2ban-after-recon.txt">Статус jail</a> · <a href="captures/01-recon.pcapng">Запись трафика</a></p>
+<h2>Задание 2. Проверка подбора пароля SSH и блокировки</h2>
+<p>Подготовлены файлы <a href="config/users.txt">users.txt</a> с двумя учебными именами и <a href="config/pass.txt">pass.txt</a> с пятью заведомо неверными паролями. Всего задано десять сочетаний; действующие пароли пользователей в словари не добавлялись.</p>
+<p>Для современного Fail2Ban включён jail <code>sshd</code> через отдельный конфигурационный файл <code>jail.d/netology.local</code>:</p>
+<pre><code class="language-ini">[DEFAULT]
+bantime = 300
+findtime = 120
+maxretry = 3
+ignoreip = 127.0.0.1/8 ::1
+banaction = iptables-multiport
+
+[sshd]
+enabled = true
+backend = polling
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+</code></pre>
+<p>Выполнена ограниченная проверка против учебного узла:</p>
+<pre><code class="language-bash">hydra -L users.txt -P pass.txt -t 2 -W 1 -w 3 -I -V 10.113.77.20 ssh
+</code></pre>
+<h3>Журналы SSH и Fail2Ban</h3>
+<p>В <code>auth.log</code> появились <code>Failed password</code>, а в Fail2Ban — события обнаружения и блокировки:</p>
+<pre><code class="language-text">2026-11-13 20:22:46,717 [sshd] Found 10.113.77.10
+2026-11-13 20:22:48,718 [sshd] Found 10.113.77.10
+2026-11-13 20:22:48,907 [sshd] Ban 10.113.77.10
+</code></pre>
+<p>После проверки статус jail подтвердил:</p>
+<pre><code class="language-text">Total failed: 5
+Currently banned: 1
+Total banned: 1
+Banned IP list: 10.113.77.10
+</code></pre>
+<p>При <code>maxretry = 3</code> общее число зарегистрированных ошибок может быть больше трёх: несколько попыток уже выполнялись параллельно в момент установки блокировки.</p>
+<p>В цепочке <code>f2b-sshd</code> появилось правило <code>REJECT</code> для <code>10.113.77.10</code>. На момент сохранения результата его счётчик содержал 37 пакетов. Это подтверждает не только запись о бане в журнале, но и фактическую обработку последующего трафика правилом межсетевого экрана.</p>
+<h3>События Suricata во время SSH-проверки</h3>
+<p>В интервале проверки появились 18 событий учебного SSH-правила, два события порогового ACK-правила и одно SYN-событие. Suricata видит сетевое поведение и распознаёт SSH, но содержимое парольного обмена зашифровано. Достоверный признак неудачной аутентификации здесь даёт <code>auth.log</code>, а блокировку подтверждают Fail2Ban и правило <code>iptables</code>.</p>
+<p>Приложения:</p>
+<ul>
+<li><a href="results/02-hydra.txt">Вывод Hydra</a>.</li>
+<li><a href="logs/02-auth.log">Журнал SSH</a>.</li>
+<li><a href="logs/02-fail2ban.log">Журнал Fail2Ban с событием Ban</a>.</li>
+<li><a href="logs/02-suricata-fast.log">Suricata fast.log</a>.</li>
+<li><a href="results/02-fail2ban-status.txt">Статус jail</a>.</li>
+<li><a href="results/02-firewall-ban.txt">Правило блокировки и счётчики</a>.</li>
+<li><a href="captures/02-ssh-attempts.pcapng">Запись трафика SSH-проверки</a>.</li>
+</ul>
+<p>Трафик записан TShark, консольным инструментом Wireshark; приложенные файлы <code>pcapng</code> открываются в Wireshark. Источники: <a href="https://nmap.org/book/man-port-scanning-techniques.html">режимы Nmap</a>, <a href="https://www.wireshark.org/docs/man-pages/tshark.html">TShark</a>.</p></main></html>

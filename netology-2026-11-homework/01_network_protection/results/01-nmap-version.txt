@@ -1,0 +1,15 @@
+$ nmap -sV -Pn --reason -p 1-100 -oA /evidence/network-protection/01-nmap-version 10.113.77.20
+
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-11-13 20:22 UTC
+Nmap scan report for anna-netology-nov13-defender-1.anna-netology-nov13_security (10.113.77.20)
+Host is up, received arp-response (0.000050s latency).
+Not shown: 99 closed tcp ports (reset)
+PORT   STATE SERVICE REASON         VERSION
+22/tcp open  ssh     syn-ack ttl 64 OpenSSH 10.0p2 Debian 7+deb13u4 (protocol 2.0)
+MAC Address: EA:2E:37:DE:90:16 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.38 seconds
+
+Exit code: 0

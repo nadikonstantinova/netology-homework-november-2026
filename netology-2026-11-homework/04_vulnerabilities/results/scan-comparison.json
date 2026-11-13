@@ -1,0 +1,46 @@
+{
+  "syn": {
+    "packets": 46,
+    "outgoing_syn": 5,
+    "server_syn_ack": 4,
+    "server_rst": 1,
+    "outgoing_fin_no_ack": 0,
+    "outgoing_xmas": 0,
+    "outgoing_udp": 0,
+    "server_udp": 0,
+    "server_icmp_port_unreachable": 0
+  },
+  "fin": {
+    "packets": 10,
+    "outgoing_syn": 0,
+    "server_syn_ack": 0,
+    "server_rst": 1,
+    "outgoing_fin_no_ack": 9,
+    "outgoing_xmas": 0,
+    "outgoing_udp": 0,
+    "server_udp": 0,
+    "server_icmp_port_unreachable": 0
+  },
+  "xmas": {
+    "packets": 10,
+    "outgoing_syn": 0,
+    "server_syn_ack": 0,
+    "server_rst": 1,
+    "outgoing_fin_no_ack": 9,
+    "outgoing_xmas": 9,
+    "outgoing_udp": 0,
+    "server_udp": 0,
+    "server_icmp_port_unreachable": 0
+  },
+  "udp": {
+    "packets": 17,
+    "outgoing_syn": 0,
+    "server_syn_ack": 0,
+    "server_rst": 0,
+    "outgoing_fin_no_ack": 0,
+    "outgoing_xmas": 0,
+    "outgoing_udp": 6,
+    "server_udp": 5,
+    "server_icmp_port_unreachable": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "customer_counts": "store_id\tcustomers\n1\t326\n2\t273\n",
+  "film_length_summary": "films\tmean_length\tlonger\n1000\t115.2720\t489\n",
+  "monthly_payments": "month\trevenue\n2005-07\t28368.91\n2005-08\t24070.14\n2005-06\t9629.89\n2005-05\t4823.44\n2006-02\t514.18\n",
+  "monthly_rentals": "month\trentals\n2005-05\t1156\n2005-06\t2311\n2005-07\t6709\n2005-08\t5686\n2006-02\t182\n"
+}

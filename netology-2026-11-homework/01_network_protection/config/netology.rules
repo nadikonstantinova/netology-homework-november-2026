@@ -1,0 +1,4 @@
+# Local training signatures: intentionally explicit and supplied with the report.
+alert tcp 10.113.77.10 any -> 10.113.77.20 any (msg:"LAB TCP SYN scan threshold"; flags:S; flow:stateless; threshold:type threshold,track by_src,count 10,seconds 30; classtype:attempted-recon; sid:1000001; rev:1;)
+alert tcp 10.113.77.10 any -> 10.113.77.20 any (msg:"LAB TCP ACK scan threshold"; flags:A; flow:stateless; threshold:type threshold,track by_src,count 10,seconds 30; classtype:attempted-recon; sid:1000002; rev:1;)
+alert ssh 10.113.77.10 any -> 10.113.77.20 22 (msg:"LAB repeated SSH connection attempts"; flow:to_server,established; threshold:type threshold,track by_src,count 3,seconds 60; classtype:attempted-admin; sid:1000003; rev:1;)

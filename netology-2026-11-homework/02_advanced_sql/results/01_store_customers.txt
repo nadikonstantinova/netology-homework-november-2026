@@ -1,0 +1,23 @@
+-- One statement: pre-aggregate customers so joining staff does not multiply them.
+SELECT s.store_id,
+       st.last_name AS staff_last_name,
+       st.first_name AS staff_first_name,
+       c.city,
+       counts.customer_count
+FROM store AS s
+JOIN staff AS st ON st.store_id = s.store_id
+JOIN address AS a ON a.address_id = s.address_id
+JOIN city AS c ON c.city_id = a.city_id
+JOIN (
+    SELECT store_id, COUNT(*) AS customer_count
+    FROM customer
+    GROUP BY store_id
+    HAVING COUNT(*) > 300
+) AS counts ON counts.store_id = s.store_id
+ORDER BY s.store_id, st.staff_id;
+
++----------+-----------------+------------------+------------+----------------+
+| store_id | staff_last_name | staff_first_name | city       | customer_count |
++----------+-----------------+------------------+------------+----------------+
+|        1 | Hillyer         | Mike             | Lethbridge |            326 |
++----------+-----------------+------------------+------------+----------------+

@@ -1,0 +1,26 @@
+{
+  "server_version": "VERSION()\n8.0.46",
+  "tasks": {
+    "01_store_customers": [
+      {
+        "store_id": "1",
+        "staff_last_name": "Hillyer",
+        "staff_first_name": "Mike",
+        "city": "Lethbridge",
+        "customer_count": "326"
+      }
+    ],
+    "02_films_above_average": [
+      {
+        "films_above_average": "489"
+      }
+    ],
+    "03_highest_revenue_month": [
+      {
+        "payment_month": "2005-07",
+        "total_revenue": "28368.91",
+        "rentals_in_month": "6709"
+      }
+    ]
+  }
+}

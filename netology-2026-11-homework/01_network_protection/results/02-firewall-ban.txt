@@ -1,0 +1,8 @@
+$ iptables -L f2b-sshd -n -v
+
+Chain f2b-sshd (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+   37  2812 REJECT     all  --  *      *       10.113.77.10         0.0.0.0/0            reject-with icmp-port-unreachable
+    0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Exit code: 0

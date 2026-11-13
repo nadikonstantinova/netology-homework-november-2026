@@ -1,0 +1,18 @@
+﻿frame.number	frame.time_relative	ip.src	ip.dst	tcp.srcport	tcp.dstport	tcp.flags	udp.srcport	udp.dstport	icmp.type	icmp.code	_ws.col.info
+4	0.155892841	10.113.77.10	10.113.77.40				49686	53			Standard query 0x0006 TXT version.bind
+5	0.155971506	10.113.77.10	10.113.77.40				49686	53			Server status request 0x0000
+6	0.155991646	10.113.77.10	10.113.77.40				49686	53			Standard query 0x0000 PTR _services._dns-sd._udp.local
+7	0.156012867	10.113.77.10	10.113.77.40				49686	65000			49686 → 65000 Len=40
+8	0.156033718	10.113.77.10	10.113.77.40				49686	111			V104316 proc-0 Call
+9	0.156072224	10.113.77.10	10.113.77.40				49686	111			Continuation
+10	0.157063306	10.113.77.40,10.113.77.10	10.113.77.10,10.113.77.40				49686	65000	3	3	Destination unreachable (Port unreachable)
+11	0.157565543	10.113.77.40	10.113.77.10				111	49686			V104316 proc-0 Reply (Call In 8)
+12	0.157606393	10.113.77.10,10.113.77.40	10.113.77.40,10.113.77.10				111	49686	3	3	Destination unreachable (Port unreachable)
+13	0.158317391	10.113.77.40	10.113.77.10				111	49686			Continuation
+14	0.158356889	10.113.77.10,10.113.77.40	10.113.77.40,10.113.77.10				111	49686	3	3	Destination unreachable (Port unreachable)
+15	0.160561211	10.113.77.40	10.113.77.10				53	49686			Standard query response 0x0006 TXT version.bind TXT NS version.bind
+16	0.160591571	10.113.77.10,10.113.77.40	10.113.77.40,10.113.77.10				53	49686	3	3	Destination unreachable (Port unreachable)
+17	0.162105817	10.113.77.40	10.113.77.10				53	49686			Server status request response 0x0000 Not implemented
+18	0.162115667	10.113.77.10,10.113.77.40	10.113.77.40,10.113.77.10				53	49686	3	3	Destination unreachable (Port unreachable)
+19	0.164345620	10.113.77.40	10.113.77.10				53	49686			Standard query response 0x0000 PTR _services._dns-sd._udp.local NS H.ROOT-SERVERS.NET NS B.ROOT-SERVERS.NET NS E.ROOT-SERVERS.NET NS G.ROOT-SERVERS.NET NS I.ROOT-SERVERS.NET NS D.ROOT-SERVERS.NET NS C.ROOT-SERVERS.NET NS F.ROOT-SERVERS.NET NS J.ROOT-SERVERS.NET NS M.ROOT-SERVERS.NET NS A.ROOT-SERVERS.NET NS L.ROOT-SERVERS.NET NS K.ROOT-SERVERS.NET
+20	0.164356010	10.113.77.10,10.113.77.40	10.113.77.40,10.113.77.10				53	49686	3	3	Destination unreachable (Port unreachable)

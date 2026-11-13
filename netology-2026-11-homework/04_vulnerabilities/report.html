@@ -1,0 +1,226 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Уязвимости и атаки на информационные системы — Константинова Надежда</title><style>
+body{margin:0;background:#f3f5f8;color:#1c2e3e;font:17px/1.65 system-ui,sans-serif}main{max-width:1160px;margin:30px auto;padding:35px 48px;background:white;border:1px solid #dbe2ea;border-radius:12px}h1{font-size:31px;line-height:1.3}h2{font-size:25px;margin-top:38px;border-bottom:1px solid #dbe2ea;padding-bottom:8px}h3{font-size:21px;margin-top:30px}a{color:#17669c}pre{padding:18px;background:#eef3f7;border-radius:8px;overflow:auto;font:14px/1.6 Consolas,monospace}code{font-family:Consolas,monospace}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:11px;border:1px solid #d9e1e8;text-align:left;vertical-align:top}th{background:#edf4f9}img{max-width:100%;height:auto;border:1px solid #dbe2ea;border-radius:8px}li{margin:5px 0}@media(max-width:700px){main{margin:0;padding:18px}h1{font-size:25px}table{font-size:13px;display:block;overflow:auto}}@media print{main{margin:0;border:0;padding:0}img,pre{break-inside:avoid}h2,h3{break-after:avoid}}</style><main><h1>Уязвимости и атаки на информационные системы — Константинова Надежда</h1>
+<h2>Задание 1. Сетевые службы и уязвимости Metasploitable</h2>
+<p>С официальной страницы <a href="https://sourceforge.net/projects/metasploitable/">Metasploitable</a> загружена Metasploitable 2. Проверена целостность архива и запущена отдельная виртуальная машина в изолированной учебной сети. Адрес ВМ — <code>10.113.77.40</code>, адрес системы сканирования — <code>10.113.77.10</code>.</p>
+<p><img alt="Консоль запущенной Metasploitable" src="data:image/png;base64,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" /></p>
+<p>Для обнаружения служб выполнено:</p>
+<pre><code class="language-bash">nmap -sS -sV --version-light -Pn --reason --top-ports 1000 10.113.77.40
+</code></pre>
+<h3>Какие сетевые службы доступны</h3>
+<p>В проверенном наборе обнаружены 22 открытых TCP-порта; остальные 978 ответили как закрытые.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Порт TCP</th>
+<th>Служба / результат определения версии</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">21</td>
+<td>FTP, vsftpd 2.3.4</td>
+</tr>
+<tr>
+<td style="text-align: right;">22</td>
+<td>SSH, OpenSSH 4.7p1 Debian 8ubuntu1</td>
+</tr>
+<tr>
+<td style="text-align: right;">23</td>
+<td>Telnet, Linux telnetd</td>
+</tr>
+<tr>
+<td style="text-align: right;">25</td>
+<td>SMTP, Postfix smtpd</td>
+</tr>
+<tr>
+<td style="text-align: right;">53</td>
+<td>DNS, ISC BIND 9.4.2</td>
+</tr>
+<tr>
+<td style="text-align: right;">80</td>
+<td>HTTP, Apache 2.2.8, Ubuntu DAV/2</td>
+</tr>
+<tr>
+<td style="text-align: right;">111</td>
+<td>RPC, rpcbind</td>
+</tr>
+<tr>
+<td style="text-align: right;">139</td>
+<td>NetBIOS/SMB, Samba smbd</td>
+</tr>
+<tr>
+<td style="text-align: right;">445</td>
+<td>SMB, Samba smbd</td>
+</tr>
+<tr>
+<td style="text-align: right;">512</td>
+<td>rexec, netkit-rsh rexecd</td>
+</tr>
+<tr>
+<td style="text-align: right;">513</td>
+<td>login/rlogin</td>
+</tr>
+<tr>
+<td style="text-align: right;">514</td>
+<td>rsh, Netkit rshd</td>
+</tr>
+<tr>
+<td style="text-align: right;">1099</td>
+<td>Java RMI, GNU Classpath grmiregistry</td>
+</tr>
+<tr>
+<td style="text-align: right;">1524</td>
+<td>Служба, распознанная Nmap как Metasploitable root shell</td>
+</tr>
+<tr>
+<td style="text-align: right;">2049</td>
+<td>RPC-служба; Nmap обозначил её как rpcbind</td>
+</tr>
+<tr>
+<td style="text-align: right;">2121</td>
+<td>FTP, ProFTPD 1.3.1</td>
+</tr>
+<tr>
+<td style="text-align: right;">3306</td>
+<td>MySQL 5.0.51a-3ubuntu5</td>
+</tr>
+<tr>
+<td style="text-align: right;">5432</td>
+<td>PostgreSQL, диапазон версии по Nmap 8.3.0–8.3.7</td>
+</tr>
+<tr>
+<td style="text-align: right;">5900</td>
+<td>VNC, протокол 3.3</td>
+</tr>
+<tr>
+<td style="text-align: right;">6000</td>
+<td>X11, приложение отвечает access denied</td>
+</tr>
+<tr>
+<td style="text-align: right;">6667</td>
+<td>IRC, UnrealIRCd</td>
+</tr>
+<tr>
+<td style="text-align: right;">8180</td>
+<td>Порт открыт, прикладная служба в этом сканировании не распознана</td>
+</tr>
+</tbody>
+</table>
+<p>Это результат проверки 1000 стандартных портов Nmap, а не утверждение об отсутствии других открытых портов за пределами этого набора.</p>
+<p><a href="results/01-service-discovery.txt">Полный вывод Nmap</a> · <a href="results/01-services.xml">XML сканирования</a> · <a href="results/services.json">Структурированный перечень служб</a></p>
+<h3>Три найденных сопоставления с известными уязвимостями</h3>
+<p>Версия vsftpd получена через Nmap. Для Samba Nmap показал лишь обобщённый диапазон <code>3.X–4.X</code>, поэтому точная версия дополнительно проверена на самой ВМ: <code>smbd -V</code> вернул <code>3.0.20-Debian</code>. В бинарном файле запущенной службы UnrealIRCd найдена строка <code>Unreal3.2.8.1</code>. В конфигурации Samba включён <code>username map script</code>.</p>
+<p><img alt="Уточнение версий Samba и UnrealIRCd в консоли ВМ" src="data:image/png;base64,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" /></p>
+<table>
+<thead>
+<tr>
+<th>Служба</th>
+<th>Уязвимость</th>
+<th>Основание и возможное последствие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vsftpd 2.3.4</td>
+<td><a href="https://www.exploit-db.com/exploits/17491">CVE-2011-2523, Exploit-DB 17491</a></td>
+<td>Известная компрометация определённой поставки исходников версии 2.3.4: добавленный бэкдор позволяет удалённое выполнение команд.</td>
+</tr>
+<tr>
+<td>Samba 3.0.20-Debian</td>
+<td><a href="https://www.exploit-db.com/exploits/16320">CVE-2007-2447, Exploit-DB 16320</a></td>
+<td>Обнаруженная версия входит в затронутый диапазон; в конфигурации присутствует <code>username map script</code>. Ошибка обработки имени пользователя при этой настройке может приводить к выполнению команд.</td>
+</tr>
+<tr>
+<td>UnrealIRCd 3.2.8.1</td>
+<td><a href="https://www.exploit-db.com/exploits/16922">CVE-2010-2075, Exploit-DB 16922</a></td>
+<td>Для определённых скомпрометированных архивов этой версии известен бэкдор удалённого выполнения команд. На ВМ подтверждена соответствующая версия службы.</td>
+</tr>
+</tbody>
+</table>
+<p>Сопоставление проведено по реально обнаруженным службам, версиям и указанным условиям. Для vsftpd и UnrealIRCd наличие бэкдора зависит от конкретной сборки: один номер версии сам по себе не доказывает компрометацию любого такого сервера. Эксплойты в данной работе не запускались; успешное выполнение произвольных команд через уязвимости не заявляется.</p>
+<h2>Задание 2. SYN, FIN, Xmas и UDP</h2>
+<p>Для сравнения TCP-режимов выбраны заведомо открытые порты <code>21,22,80,445</code> и закрытый <code>65000</code>. Для UDP проверены <code>53,111,65000</code>.</p>
+<pre><code class="language-bash">nmap -sS -Pn --reason -p 21,22,80,445,65000 10.113.77.40
+nmap -sF -Pn --reason -p 21,22,80,445,65000 10.113.77.40
+nmap -sX -Pn --reason -p 21,22,80,445,65000 10.113.77.40
+nmap -sU -Pn --reason -p 53,111,65000 10.113.77.40
+</code></pre>
+<p>В приложенных выводах также указаны <code>--max-retries 1</code> и ограничение времени узла <code>90s</code>. Каждому режиму соответствует отдельная запись <code>pcapng</code>, сделанная TShark — консольным инструментом Wireshark.</p>
+<h3>Различия трафика и ответы сервера</h3>
+<table>
+<thead>
+<tr>
+<th>Режим</th>
+<th>Отправляемые пакеты</th>
+<th>Что получено от Metasploitable</th>
+<th>Результат Nmap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SYN, <code>-sS</code></td>
+<td>TCP с флагом SYN</td>
+<td>Четыре SYN/ACK от открытых портов и один RST от <code>65000/tcp</code></td>
+<td>Четыре <code>open</code>, один <code>closed</code></td>
+</tr>
+<tr>
+<td>FIN, <code>-sF</code></td>
+<td>TCP с FIN без ACK</td>
+<td>Открытые порты не ответили; <code>65000/tcp</code> вернул RST</td>
+<td>Открытые порты отображены как <code>open\|filtered</code>, закрытый — <code>closed</code></td>
+</tr>
+<tr>
+<td>Xmas, <code>-sX</code></td>
+<td>TCP с FIN, PSH и URG</td>
+<td>Открытые порты не ответили; <code>65000/tcp</code> вернул RST</td>
+<td>Четыре <code>open\|filtered</code>, один <code>closed</code></td>
+</tr>
+<tr>
+<td>UDP, <code>-sU</code></td>
+<td>UDP-запросы к выбранным службам</td>
+<td>От <code>53/udp</code> и <code>111/udp</code> получены ответы UDP; от <code>65000/udp</code> — ICMP type 3, code 3</td>
+<td>Два <code>open</code>, один <code>closed</code></td>
+</tr>
+</tbody>
+</table>
+<p>В FIN- и Xmas-записях по девять проб: пять исходных пакетов и повторные пробы для четырёх не ответивших портов. Отсутствие ответа не позволяет этим режимам однозначно отличить открытый порт от фильтрации, поэтому Nmap выводит <code>open|filtered</code>. Предыдущее SYN-сканирование отдельно подтвердило, что эти четыре порта открыты.</p>
+<p>В UDP-записи обнаружены шесть отправленных UDP-пакетов и пять UDP-ответов сервера. Nmap использовал разные прикладные запросы для известных служб. Сервер отправил один ICMP Port Unreachable для закрытого порта. В той же записи есть ICMP-пакеты от сканера в обратную сторону; при подсчёте ответов сервера учитывался именно внешний IP-заголовок (<code>ip.src#1</code>), а не процитированный заголовок внутри ICMP.</p>
+<p>TCP-флаги, IP-адреса и ICMP-коды можно проверить в приложенных таблицах пакетов и открыть сами записи в Wireshark:</p>
+<table>
+<thead>
+<tr>
+<th>Режим</th>
+<th>Запись трафика</th>
+<th>Вывод Nmap</th>
+<th>Таблица пакетов</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SYN</td>
+<td><a href="captures/02-syn.pcapng">02-syn.pcapng</a></td>
+<td><a href="results/02-syn.txt">SYN</a></td>
+<td><a href="results/02-syn-packets.tsv">TSV</a></td>
+</tr>
+<tr>
+<td>FIN</td>
+<td><a href="captures/02-fin.pcapng">02-fin.pcapng</a></td>
+<td><a href="results/02-fin.txt">FIN</a></td>
+<td><a href="results/02-fin-packets.tsv">TSV</a></td>
+</tr>
+<tr>
+<td>Xmas</td>
+<td><a href="captures/02-xmas.pcapng">02-xmas.pcapng</a></td>
+<td><a href="results/02-xmas.txt">Xmas</a></td>
+<td><a href="results/02-xmas-packets.tsv">TSV</a></td>
+</tr>
+<tr>
+<td>UDP</td>
+<td><a href="captures/02-udp.pcapng">02-udp.pcapng</a></td>
+<td><a href="results/02-udp.txt">UDP</a></td>
+<td><a href="results/02-udp-packets.tsv">TSV</a></td>
+</tr>
+</tbody>
+</table>
+<p><a href="results/scan-comparison.json">Сводка автоматической проверки пакетов</a>.</p>
+<p>Источники: <a href="https://docs.rapid7.com/metasploit/metasploitable-2/">Rapid7 — Metasploitable 2</a>, <a href="https://nmap.org/book/man-port-scanning-techniques.html">режимы сканирования Nmap</a>, <a href="https://www.wireshark.org/docs/man-pages/tshark.html">TShark и формат pcapng</a>.</p></main></html>

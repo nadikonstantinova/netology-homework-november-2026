@@ -1,0 +1,21 @@
+-- Payments and rentals are aggregated independently by calendar month.
+-- The year is retained; months from different years must not be merged.
+WITH monthly_revenue AS (
+    SELECT CAST(DATE_FORMAT(payment_date, '%Y-%m-01') AS DATE) AS month_start,
+           SUM(amount) AS total_revenue
+    FROM payment
+    GROUP BY CAST(DATE_FORMAT(payment_date, '%Y-%m-01') AS DATE)
+), top_month AS (
+    SELECT month_start, total_revenue
+    FROM monthly_revenue
+    ORDER BY total_revenue DESC, month_start
+    LIMIT 1
+)
+SELECT DATE_FORMAT(t.month_start, '%Y-%m') AS payment_month,
+       t.total_revenue,
+       COUNT(r.rental_id) AS rentals_in_month
+FROM top_month AS t
+LEFT JOIN rental AS r
+       ON r.rental_date >= t.month_start
+      AND r.rental_date < t.month_start + INTERVAL 1 MONTH
+GROUP BY t.month_start, t.total_revenue;

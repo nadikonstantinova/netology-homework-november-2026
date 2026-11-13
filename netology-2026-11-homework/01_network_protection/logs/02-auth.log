@@ -1,0 +1,28 @@
+2026-11-13T20:22:31.316865+00:00 protected sshd[26]: Server listening on 0.0.0.0 port 22.
+2026-11-13T20:22:31.316956+00:00 protected sshd[26]: Server listening on :: port 22.
+2026-11-13T20:22:36.773202+00:00 protected sshd[26]: srclimit_penalise: ipv4: new 10.113.77.10/32 deferred penalty of 1 seconds for penalty: connections without attempting authentication
+2026-11-13T20:22:38.043022+00:00 protected sshd-session[82]: Connection from 10.113.77.10 port 57886 on 10.113.77.20 port 22 rdomain ""
+2026-11-13T20:22:38.061051+00:00 protected sshd-session[82]: kex_exchange_identification: Connection closed by remote host
+2026-11-13T20:22:38.061116+00:00 protected sshd-session[82]: Connection closed by 10.113.77.10 port 57886
+2026-11-13T20:22:44.219746+00:00 protected sshd-session[107]: Connection from 10.113.77.10 port 57900 on 10.113.77.20 port 22 rdomain ""
+2026-11-13T20:22:44.280261+00:00 protected sshd-session[107]: Received disconnect from 10.113.77.10 port 57900:11: Bye Bye [preauth]
+2026-11-13T20:22:44.280313+00:00 protected sshd-session[107]: Disconnected from authenticating user labuser 10.113.77.10 port 57900 [preauth]
+2026-11-13T20:22:44.281726+00:00 protected sshd[26]: srclimit_penalise: ipv4: new 10.113.77.10/32 deferred penalty of 1 seconds for penalty: connections without attempting authentication
+2026-11-13T20:22:44.502696+00:00 protected sshd-session[109]: Connection from 10.113.77.10 port 57908 on 10.113.77.20 port 22 rdomain ""
+2026-11-13T20:22:44.503727+00:00 protected sshd-session[110]: Connection from 10.113.77.10 port 57906 on 10.113.77.20 port 22 rdomain ""
+2026-11-13T20:22:44.623362+00:00 protected unix_chkpwd[114]: password check failed for user (labuser)
+2026-11-13T20:22:44.624234+00:00 protected sshd-session[110]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.113.77.10  user=labuser
+2026-11-13T20:22:44.627739+00:00 protected unix_chkpwd[113]: password check failed for user (labuser)
+2026-11-13T20:22:44.628110+00:00 protected sshd-session[109]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.113.77.10  user=labuser
+2026-11-13T20:22:46.499919+00:00 protected sshd-session[109]: Failed password for labuser from 10.113.77.10 port 57908 ssh2
+2026-11-13T20:22:46.683291+00:00 protected sshd-session[110]: Failed password for labuser from 10.113.77.10 port 57906 ssh2
+2026-11-13T20:22:48.165527+00:00 protected sshd-session[110]: Received disconnect from 10.113.77.10 port 57906:11: Bye Bye [preauth]
+2026-11-13T20:22:48.165595+00:00 protected sshd-session[110]: Disconnected from authenticating user labuser 10.113.77.10 port 57906 [preauth]
+2026-11-13T20:22:48.167430+00:00 protected sshd[26]: srclimit_penalise: ipv4: new 10.113.77.10/32 deferred penalty of 5 seconds for penalty: failed authentication
+2026-11-13T20:22:48.173033+00:00 protected sshd-session[116]: Connection from 10.113.77.10 port 54182 on 10.113.77.20 port 22 rdomain ""
+2026-11-13T20:22:48.220813+00:00 protected unix_chkpwd[117]: password check failed for user (labuser)
+2026-11-13T20:22:48.229684+00:00 protected sshd-session[116]: Invalid user netology-test from 10.113.77.10 port 54182
+2026-11-13T20:22:48.231848+00:00 protected sshd-session[116]: pam_unix(sshd:auth): check pass; user unknown
+2026-11-13T20:22:48.231918+00:00 protected sshd-session[116]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=10.113.77.10 
+2026-11-13T20:22:50.136580+00:00 protected sshd-session[109]: Failed password for labuser from 10.113.77.10 port 57908 ssh2
+2026-11-13T20:22:50.828894+00:00 protected sshd-session[116]: Failed password for invalid user netology-test from 10.113.77.10 port 54182 ssh2

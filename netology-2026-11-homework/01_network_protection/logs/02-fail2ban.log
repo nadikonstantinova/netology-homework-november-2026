@@ -1,0 +1,22 @@
+2026-11-13 20:22:31,610 fail2ban.server         [33]: INFO    --------------------------------------------------
+2026-11-13 20:22:31,610 fail2ban.server         [33]: INFO    Starting Fail2ban v1.1.0
+2026-11-13 20:22:31,611 fail2ban.server         [33]: INFO    Daemon started
+2026-11-13 20:22:31,614 fail2ban.observer       [33]: INFO    Observer start...
+2026-11-13 20:22:31,683 fail2ban.database       [33]: INFO    Connected to fail2ban persistent database '/var/lib/fail2ban/fail2ban.sqlite3'
+2026-11-13 20:22:31,685 fail2ban.database       [33]: WARNING New database created. Version '4'
+2026-11-13 20:22:31,686 fail2ban.jail           [33]: INFO    Creating new jail 'sshd'
+2026-11-13 20:22:31,686 fail2ban.jail           [33]: INFO    Jail 'sshd' uses poller {}
+2026-11-13 20:22:31,686 fail2ban.jail           [33]: INFO    Initiated 'polling' backend
+2026-11-13 20:22:31,687 fail2ban.filter         [33]: INFO      maxLines: 1
+2026-11-13 20:22:31,699 fail2ban.filter         [33]: INFO      maxRetry: 3
+2026-11-13 20:22:31,699 fail2ban.filter         [33]: INFO      findtime: 120
+2026-11-13 20:22:31,699 fail2ban.actions        [33]: INFO      banTime: 300
+2026-11-13 20:22:31,699 fail2ban.filter         [33]: INFO      encoding: UTF-8
+2026-11-13 20:22:31,700 fail2ban.filter         [33]: INFO    Added logfile: '/var/log/auth.log' (pos = 0, hash = b6931902a6a085310e29c811cc0569118c67d6b7)
+2026-11-13 20:22:31,702 fail2ban.jail           [33]: INFO    Jail 'sshd' started
+2026-11-13 20:22:46,717 fail2ban.filter         [33]: INFO    [sshd] Found 10.113.77.10 - 2026-11-13 20:22:46
+2026-11-13 20:22:46,717 fail2ban.filter         [33]: INFO    [sshd] Found 10.113.77.10 - 2026-11-13 20:22:46
+2026-11-13 20:22:48,718 fail2ban.filter         [33]: INFO    [sshd] Found 10.113.77.10 - 2026-11-13 20:22:48
+2026-11-13 20:22:48,907 fail2ban.actions        [33]: NOTICE  [sshd] Ban 10.113.77.10
+2026-11-13 20:22:50,720 fail2ban.filter         [33]: INFO    [sshd] Found 10.113.77.10 - 2026-11-13 20:22:50
+2026-11-13 20:22:50,921 fail2ban.filter         [33]: INFO    [sshd] Found 10.113.77.10 - 2026-11-13 20:22:50

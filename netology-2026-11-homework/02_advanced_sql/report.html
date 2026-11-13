@@ -1,0 +1,106 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Расширенные возможности SQL — Константинова Надежда</title><style>
+body{margin:0;background:#f3f5f8;color:#1c2e3e;font:17px/1.65 system-ui,sans-serif}main{max-width:1160px;margin:30px auto;padding:35px 48px;background:white;border:1px solid #dbe2ea;border-radius:12px}h1{font-size:31px;line-height:1.3}h2{font-size:25px;margin-top:38px;border-bottom:1px solid #dbe2ea;padding-bottom:8px}h3{font-size:21px;margin-top:30px}a{color:#17669c}pre{padding:18px;background:#eef3f7;border-radius:8px;overflow:auto;font:14px/1.6 Consolas,monospace}code{font-family:Consolas,monospace}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:11px;border:1px solid #d9e1e8;text-align:left;vertical-align:top}th{background:#edf4f9}img{max-width:100%;height:auto;border:1px solid #dbe2ea;border-radius:8px}li{margin:5px 0}@media(max-width:700px){main{margin:0;padding:18px}h1{font-size:25px}table{font-size:13px;display:block;overflow:auto}}@media print{main{margin:0;border:0;padding:0}img,pre{break-inside:avoid}h2,h3{break-after:avoid}}</style><main><h1>Расширенные возможности SQL — Константинова Надежда</h1>
+<p>Обязательные задания выполнены на MySQL 8.0.46 с официальной учебной базой Sakila. В базе 1000 фильмов, 599 покупателей и 16044 записи об аренде. SQL-запросы и фактический вывод сервера приложены к решению.</p>
+<h2>Задание 1. Магазин с количеством покупателей более 300</h2>
+<pre><code class="language-sql">SELECT s.store_id,
+       st.last_name AS staff_last_name,
+       st.first_name AS staff_first_name,
+       c.city,
+       counts.customer_count
+FROM store AS s
+JOIN staff AS st ON st.store_id = s.store_id
+JOIN address AS a ON a.address_id = s.address_id
+JOIN city AS c ON c.city_id = a.city_id
+JOIN (
+    SELECT store_id, COUNT(*) AS customer_count
+    FROM customer
+    GROUP BY store_id
+    HAVING COUNT(*) &gt; 300
+) AS counts ON counts.store_id = s.store_id
+ORDER BY s.store_id, st.staff_id;
+</code></pre>
+<p>Результат одного запроса:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">store_id</th>
+<th>staff_last_name</th>
+<th>staff_first_name</th>
+<th>city</th>
+<th style="text-align: right;">customer_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Hillyer</td>
+<td>Mike</td>
+<td>Lethbridge</td>
+<td style="text-align: right;">326</td>
+</tr>
+</tbody>
+</table>
+<p>В магазине № 2 закреплены 273 покупателя, поэтому он не входит в результат. Сначала покупатели подсчитываются по магазинам, затем присоединяются сведения о сотрудниках и городе. Это исключает умножение счётчика покупателей при наличии нескольких сотрудников в магазине.</p>
+<p><a href="sql/01_store_customers.sql">SQL-файл</a> · <a href="results/01_store_customers.txt">Вывод MySQL</a></p>
+<h2>Задание 2. Фильмы длиннее среднего</h2>
+<pre><code class="language-sql">SELECT COUNT(*) AS films_above_average
+FROM film
+WHERE length &gt; (SELECT AVG(length) FROM film);
+</code></pre>
+<p>Результат:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">films_above_average</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">489</td>
+</tr>
+</tbody>
+</table>
+<p>Средняя продолжительность по всем фильмам составляет <code>115.2720</code> минуты. Условие строгое: учитываются фильмы с <code>length</code> больше среднего, а не равные ему.</p>
+<p><a href="sql/02_films_above_average.sql">SQL-файл</a> · <a href="results/02_films_above_average.txt">Вывод MySQL</a></p>
+<h2>Задание 3. Месяц с максимальной суммой платежей</h2>
+<pre><code class="language-sql">WITH monthly_revenue AS (
+    SELECT CAST(DATE_FORMAT(payment_date, '%Y-%m-01') AS DATE) AS month_start,
+           SUM(amount) AS total_revenue
+    FROM payment
+    GROUP BY CAST(DATE_FORMAT(payment_date, '%Y-%m-01') AS DATE)
+), top_month AS (
+    SELECT month_start, total_revenue
+    FROM monthly_revenue
+    ORDER BY total_revenue DESC, month_start
+    LIMIT 1
+)
+SELECT DATE_FORMAT(t.month_start, '%Y-%m') AS payment_month,
+       t.total_revenue,
+       COUNT(r.rental_id) AS rentals_in_month
+FROM top_month AS t
+LEFT JOIN rental AS r
+       ON r.rental_date &gt;= t.month_start
+      AND r.rental_date &lt; t.month_start + INTERVAL 1 MONTH
+GROUP BY t.month_start, t.total_revenue;
+</code></pre>
+<p>Результат:</p>
+<table>
+<thead>
+<tr>
+<th>payment_month</th>
+<th style="text-align: right;">total_revenue</th>
+<th style="text-align: right;">rentals_in_month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2005-07</td>
+<td style="text-align: right;">28368.91</td>
+<td style="text-align: right;">6709</td>
+</tr>
+</tbody>
+</table>
+<p>Наибольшая сумма платежей получена за <strong>июль 2005 года</strong>. Количество аренд подсчитано по <code>rental_date</code> за тот же календарный месяц. Группировка платежей учитывает одновременно месяц и год, поэтому июль разных лет не смешивается. Выручка предварительно суммируется отдельно от аренд: присоединение строк не увеличивает сумму платежей.</p>
+<p><a href="sql/03_highest_revenue_month.sql">SQL-файл</a> · <a href="results/03_highest_revenue_month.txt">Вывод MySQL</a></p>
+<p>Проверочные агрегаты по всем магазинам, фильмам, месяцам платежей и аренды: <a href="results/verification.json">verification.json</a>.</p>
+<p>Источник учебной базы: <a href="https://dev.mysql.com/doc/sakila/en/sakila-installation.html">официальная инструкция Sakila</a>.</p></main></html>

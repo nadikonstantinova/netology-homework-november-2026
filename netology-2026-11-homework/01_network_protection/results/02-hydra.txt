@@ -1,0 +1,30 @@
+$ hydra -L /lab/users.txt -P /lab/pass.txt -t 2 -W 1 -w 3 -I -V 10.113.77.20 ssh
+
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-11-13 20:22:44
+[DATA] max 2 tasks per 1 server, overall 2 tasks, 10 login tries (l:2/p:5), ~5 tries per task
+[DATA] attacking ssh://10.113.77.20:22/
+[ATTEMPT] target 10.113.77.20 - login "labuser" - pass "wrong-lab-password-01" - 1 of 10 [child 0] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "labuser" - pass "wrong-lab-password-02" - 2 of 10 [child 1] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "labuser" - pass "wrong-lab-password-03" - 3 of 10 [child 0] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "labuser" - pass "wrong-lab-password-04" - 4 of 10 [child 1] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "labuser" - pass "wrong-lab-password-05" - 5 of 10 [child 0] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-01" - 6 of 10 [child 1] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 7 of 10 [child 0] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-03" - 8 of 10 [child 1] (0/0)
+[RE-ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 8 of 10 [child 0] (0/0)
+[RE-ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 8 of 10 [child 0] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-04" - 9 of 10 [child 1] (0/0)
+[RE-ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 9 of 10 [child 0] (0/0)
+[ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-05" - 10 of 10 [child 1] (0/0)
+[RE-ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 10 of 10 [child 0] (0/0)
+[RE-ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 10 of 10 [child 0] (0/0)
+[RE-ATTEMPT] target 10.113.77.20 - login "netology-test" - pass "wrong-lab-password-02" - 10 of 10 [child 0] (0/0)
+1 of 1 target completed, 0 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-11-13 20:22:58
+
+[stderr]
+[WARNING] the waittime you set is low, this can result in errornous results
+
+Exit code: 0

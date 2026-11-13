@@ -1,0 +1,13 @@
+$ fail2ban-client status sshd
+
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	5
+|  `- File list:	/var/log/auth.log
+`- Actions
+   |- Currently banned:	1
+   |- Total banned:	1
+   `- Banned IP list:	10.113.77.10
+
+Exit code: 0
